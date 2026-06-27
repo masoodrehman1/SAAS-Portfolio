@@ -122,7 +122,7 @@ def get_post(id:int,db:Session=Depends(get_db)):
         raise HTTPException(status_code=404,detail="post not found")
     return post
 
-@app.put("/posts/{id}",response_model=PostModel)
+@app.put("/posts/{id}",response_model=PostResponse)
 def update_post(id:int,data:PostCreate,token:str=Depends(oauth2_schema),db:Session=Depends(get_db)):
     payload=verify_token(token)
     if not payload:
